@@ -1,0 +1,12 @@
+{
+  "name": "Travel Market 2026",
+  "description": "Comprehensive international tourism platform for bookings, routes, and experiences, focused on the 2026 Global Events.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "AI Recommendations",
+    "Interactive Maps",
+    "Real-time Bookings"
+  ]
+}

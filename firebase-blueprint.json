@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and roles",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "enum": ["USER", "ADMIN", "SUPER_ADMIN", "PARTNER"] },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "email", "role"]
+    },
+    "City": {
+      "title": "City",
+      "description": "Information about a host city",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "country": { "type": "string" },
+        "description": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "location": { "type": "object" },
+        "mainAirport": { "type": "string" },
+        "stadiums": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["name", "country"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Reservation details",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "itemId": { "type": "string" },
+        "itemType": { "enum": ["hotel", "restaurant", "tour", "transport"] },
+        "status": { "enum": ["pending", "paid", "cancelled", "completed"] },
+        "totalPrice": { "type": "number" },
+        "startDate": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "itemId", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/cities/{cityId}": {
+      "schema": "City",
+      "description": "Metadata for each city"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "All user bookings"
+    },
+    "/favorites/{favoriteId}": {
+      "schema": { "type": "object", "properties": { "userId": { "type": "string" }, "itemId": { "type": "string" } } },
+      "description": "User favorites"
+    }
+  }
+}
